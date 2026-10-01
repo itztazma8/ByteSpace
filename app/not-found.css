@@ -1,0 +1,96 @@
+.nf {
+  background-color: #0038ff;
+  background-image: url("/images/Hero_Frame.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-family: inherit;
+  overflow: hidden;
+}
+
+/* content box under the navbar */
+.nf-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 110px;
+}
+
+/* 404 image: behind the text */
+.nf-four {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  position: relative;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* text overlaps the bottom of the 404 image */
+.nf-title {
+  position: relative;
+  z-index: 1;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: -120px 0 0;
+}
+.nf-desc {
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 40px 0 28px;
+}
+.nf-button {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  background: #c6ff00;
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 999px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.nf-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* tablet */
+@media (max-width: 900px) {
+  .nf-body {
+    padding: 40px 20px 90px;
+  }
+  .nf-four {
+    max-width: 480px;
+  }
+  .nf-title {
+    font-size: 38px;
+    margin-top: -90px;
+  }
+}
+
+/* mobile */
+@media (max-width: 500px) {
+  .nf-four {
+    max-width: 320px;
+  }
+  .nf-title {
+    font-size: 28px;
+    margin-top: -60px;
+  }
+  .nf-desc {
+    font-size: 13px;
+    margin: 28px 0 22px;
+  }
+}
