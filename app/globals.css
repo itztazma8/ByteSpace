@@ -1,26 +1,642 @@
-@import "tailwindcss";
+/* =========================
+   Global basics
+   ========================= */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #111;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* inputs and buttons don't inherit fonts by default */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+
+/* =========================
+   Hero
+   ========================= */
+
+.hero {
+  position: relative;
+  background-image: url("/images/Hero_Frame.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  overflow: hidden;
+}
+
+/* =========================
+   Navbar
+   Grid: logo | links (true center) | actions
+   Extra padding on top so the row sits lower, like the template
+   ========================= */
+
+.navbar {
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 48px 8% 24px;
+}
+
+/* logo is now a Link, so reset link styles */
+.logo {
+  justify-self: start;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo img {
+  display: block;
+  width: 170px;
+  height: auto;
+}
+
+/* Center Navigation */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  white-space: nowrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* Right-side Actions */
+.nav-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  white-space: nowrap;
+}
+
+.nav-actions a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.nav-shop {
+  display: flex;
+  align-items: center;
+}
+
+.nav-shop img {
+  display: block;
+  width: 25px;
+  height: 25px;
+}
+
+/* =========================
+   Hero Background Image
+   3D Ornament - FRONT
+   Desktop Only
+   135% wide: a bit smaller than 150%, still wider than
+   the original 125% so the shapes sit out at the sides.
+   top is 216px to keep the shapes at the same height.
+   ========================= */
+
+.hero-background {
+  position: absolute;
+  top: 216px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 135%;
+  max-width: 2700px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-background img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* =========================
+   Hero Content
+   ========================= */
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.hero-content h1 {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 860px;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   Search Bar
+   ========================= */
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  width: 440px;
+  height: 50px;
+  background-color: white;
+  border-radius: 30px;
+  padding-left: 20px;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  color: #777;
+  flex-shrink: 0;
+}
+
+.search-input input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 12px;
+  font-size: 16px;
+  color: black;
+}
+
+.search-input input::placeholder {
+  color: #999;
+}
+
+.search-container button {
+  width: 110px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  border-radius: 30px;
+  background-color: #c6ff00;
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* =========================
+   Ellipse + Person block
+   The middle image sets the height,
+   the ellipse sits behind it and is clipped
+   at the middle image's bottom edge.
+   ========================= */
+
+.after-search-image {
+  --w: 1100px;
+  position: relative;
+  display: inline-block;
+  width: var(--w);
+  margin-top: 70px;
+  z-index: 0;
+  /* clip only the bottom, let sides/top overflow */
+  -webkit-clip-path: inset(-300px -400px 0 -400px);
+  clip-path: inset(-300px -400px 0 -400px);
+}
+
+/* BACK: Ellipse */
+.after-search-image > img {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  display: block;
+  width: var(--w);
+  height: auto;
+}
+
+/* MIDDLE: in flow, so it decides the height */
+.first-middle-background {
+  position: relative;
+  left: 80px;
+  width: var(--w);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.first-middle-background > img {
+  display: block;
+  width: var(--w);
+  height: auto;
+}
+
+/* FRONT: Group */
+.group-image {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 85px);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.group-image img {
+  display: block;
+  width: 880px;
+  height: auto;
+}
+
+/* =========================
+   Sponsor Section
+   ========================= */
+
+.hero-bottom-bar {
+  width: 100%;
+  height: 250px;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+  padding: 0 3%;
+  display: flex;
+  align-items: center;
+}
+
+.sponsor-row {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sponsor-logo {
+  width: 180px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sponsor-logo img {
+  width: 180px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* =========================
+   Tablet
+   Navbar stacks, 3 UP + 2 DOWN sponsors
+   ========================= */
+
+@media (max-width: 1100px) {
+  /* Sponsors */
+  .hero-bottom-bar {
+    height: 300px;
+    padding: 0 25px;
+  }
+
+  .sponsor-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 70px);
+    row-gap: 45px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 36px 25px 20px;
+  }
+
+  .nav-links {
+    gap: 28px;
+  }
+
+  .nav-actions {
+    gap: 24px;
+  }
+
+  .nav-links a,
+  .nav-actions a {
+    font-size: 17px;
+  }
+
+  /* Hero content */
+  .hero-content {
+    padding-top: 30px;
+  }
+
+  .hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 6px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+
+  /* Hide ONLY 3D Ornament */
+  .hero-background {
+    display: none;
+  }
+
+  /* Search */
+  .search-input {
+    width: 400px;
+    height: 48px;
+  }
+
+  .search-container button {
+    width: 100px;
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .search-input input {
+    font-size: 15px;
+  }
+
+  /* Ellipse */
+  .after-search-image {
+    --w: 900px;
+  }
+
+  .first-middle-background {
+    left: 64px;
+  }
+
+  .group-image {
+    left: calc(50% - 65px);
+  }
+
+  .group-image img {
+    width: 795px;
+  }
+}
+
+/* =========================
+   Smaller Tablet
+   2 + 2 + 1
+   ========================= */
+
+@media (max-width: 850px) {
+  /* Sponsors */
+  .hero-bottom-bar {
+    height: 360px;
+    padding: 0 20px;
+  }
+
+  .sponsor-row {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 70px);
+    row-gap: 35px;
+  }
+
+  .sponsor-logo,
+  .sponsor-logo img {
+    width: 160px;
+    height: 70px;
+  }
+
+  /* Center fifth logo */
+  .sponsor-logo:last-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Navbar */
+  .navbar {
+    gap: 12px;
+    padding: 30px 20px 18px;
+  }
+
+  .logo img {
+    width: 140px;
+  }
+
+  .nav-links {
+    gap: 24px;
+  }
+
+  .nav-actions {
+    gap: 20px;
+  }
+
+  .nav-links a,
+  .nav-actions a {
+    font-size: 16px;
+  }
+
+  /* Hero content */
+  .hero-content h1 {
+    font-size: 40px;
+    margin-bottom: 4px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 28px;
+    padding: 0 20px;
+  }
+
+  /* Search */
+  .search-container {
+    gap: 7px;
+  }
+
+  .search-input {
+    width: 350px;
+    height: 46px;
+    padding-left: 17px;
+  }
+
+  .search-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .search-input input {
+    font-size: 14px;
+  }
+
+  .search-container button {
+    width: 95px;
+    height: 46px;
+    font-size: 14px;
+  }
+
+  /* Ellipse */
+  .after-search-image {
+    --w: 750px;
+  }
+
+  .first-middle-background {
+    left: 48px;
+  }
+
+  .group-image {
+    left: calc(50% - 55px);
+  }
+
+  .group-image img {
+    width: 665px;
+  }
+}
+
+/* =========================
+   Mobile
+   2 + 2 + 1
+   ========================= */
+
+@media (max-width: 650px) {
+  /* Sponsors */
+  .hero-bottom-bar {
+    height: 360px;
+    padding: 0 15px;
+  }
+
+  .sponsor-row {
+    grid-template-rows: repeat(3, 60px);
+    row-gap: 40px;
+  }
+
+  .sponsor-logo,
+  .sponsor-logo img {
+    width: 140px;
+    height: 60px;
+  }
+
+  /* Navbar */
+  .navbar {
+    gap: 10px;
+    padding: 24px 15px 15px;
+  }
+
+  .logo img {
+    width: 120px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-actions {
+    gap: 16px;
+  }
+
+  .nav-links a,
+  .nav-actions a {
+    font-size: 15px;
+  }
+
+  .nav-shop img {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Hero content */
+  .hero-content {
+    padding-top: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+    margin-bottom: 2px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    margin-bottom: 22px;
+  }
+
+  /* Search */
+  .search-container {
+    width: calc(100% - 30px);
+    gap: 6px;
+  }
+
+  .search-input {
+    width: auto;
+    flex: 1;
+    height: 44px;
+    padding-left: 13px;
+  }
+
+  .search-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .search-input input {
+    font-size: 13px;
+    padding: 0 7px;
+  }
+
+  .search-container button {
+    width: 85px;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  /* Ellipse */
+  .after-search-image {
+    --w: 600px;
+  }
+
+  .first-middle-background {
+    left: 24px;
+  }
+
+  .group-image {
+    left: calc(50% - 35px);
+  }
+
+  .group-image img {
+    width: 535px;
+  }
 }
