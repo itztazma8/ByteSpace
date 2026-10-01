@@ -1,0 +1,104 @@
+.testi {
+  background-color: #fafafa;
+  background-image: url("/images/last.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 90px 24px 100px;
+  color: #111;
+  font-family: inherit;
+}
+
+/* top row: 2 boxes side by side */
+.testi-top {
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+.testi-title {
+  flex: 1;
+  font-size: 40px;
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 0;
+}
+.testi-desc {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #555;
+  margin: 0;
+}
+
+/* card row: 3 equal boxes, slightly staggered like the design */
+.testi-cards {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.testi-card {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+.testi-card:nth-child(2) {
+  margin-top: 12px;
+}
+.testi-card:nth-child(3) {
+  margin-top: 24px;
+}
+
+/* inside a card */
+.testi-avatar {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+.testi-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+.testi-role {
+  font-size: 13px;
+  color: #1a3cff;
+  margin: 0 0 16px;
+}
+.testi-quote {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #444;
+  margin: 0;
+}
+
+/* tablet + mobile: stack the boxes */
+@media (max-width: 900px) {
+  .testi-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .testi-title {
+    font-size: 32px;
+  }
+  .testi-cards {
+    flex-direction: column;
+  }
+  .testi-card,
+  .testi-card:nth-child(2),
+  .testi-card:nth-child(3) {
+    margin-top: 0;
+    width: 100%;
+  }
+}
