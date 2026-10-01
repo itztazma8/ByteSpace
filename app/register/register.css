@@ -1,0 +1,190 @@
+.reg {
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #0038ff;
+  background-image: url("/images/Hero_Frame.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 36px 6% 60px;
+  color: #fff;
+  font-family: inherit;
+}
+.reg *,
+.reg *::before,
+.reg *::after {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* logo */
+.reg-logo {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.reg-logo img {
+  display: block;
+  width: 32px;
+  height: auto;
+}
+
+/* two equal boxes side by side */
+.reg-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.reg-left,
+.reg-right {
+  flex: 1;
+  min-width: 0;
+}
+
+/* left box */
+.reg-left-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+.reg-left-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 340px;
+  margin: 0 0 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.reg-left-img {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+/* right box */
+.reg-right {
+  display: flex;
+  justify-content: center;
+}
+.reg-card {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  color: #111;
+  border-radius: 28px;
+  padding: 44px 44px 36px;
+}
+.reg-eyebrow {
+  display: block;
+  font-size: 13px;
+  color: #1a3cff;
+  margin-bottom: 6px;
+}
+.reg-heading {
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 0 0 32px;
+  color: #12122a;
+}
+
+/* form fields */
+.reg-field {
+  display: block;
+  margin-bottom: 20px;
+}
+.reg-field span {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 8px;
+}
+.reg-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #e6e6ea;
+  border-radius: 12px;
+  background: #f6f8fc;
+  font-size: 14px;
+  color: #111;
+  outline: none;
+}
+.reg-field input::placeholder {
+  color: #9a9aa5;
+}
+.reg-field input:focus {
+  border-color: #1a3cff;
+  background: #fff;
+}
+
+/* button */
+.reg-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.reg-button {
+  border: none;
+  cursor: pointer;
+  background: #c6ff00;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 999px;
+}
+
+/* bottom text */
+.reg-login {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  margin: 70px 0 0;
+}
+.reg-login a {
+  color: #1a3cff;
+  text-decoration: none;
+}
+
+/* tablet + mobile: stack the boxes, form first */
+@media (max-width: 900px) {
+  .reg {
+    padding: 28px 5% 50px;
+  }
+  .reg-body {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .reg-right {
+    order: 1;
+    width: 100%;
+  }
+  .reg-left {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+  .reg-left-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .reg-left-img {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .reg-card {
+    padding: 32px 22px 28px;
+    border-radius: 22px;
+  }
+  .reg-heading {
+    font-size: 30px;
+  }
+  .reg-login {
+    margin-top: 40px;
+  }
+}

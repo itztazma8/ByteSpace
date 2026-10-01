@@ -1,0 +1,242 @@
+.log {
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #0038ff;
+  background-image: url("/images/Hero_Frame.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 36px 6% 60px;
+  color: #fff;
+  font-family: inherit;
+}
+.log *,
+.log *::before,
+.log *::after {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* logo */
+.log-logo {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.log-logo img {
+  display: block;
+  width: 32px;
+  height: auto;
+}
+
+/* two equal boxes side by side */
+.log-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.log-left,
+.log-right {
+  flex: 1;
+  min-width: 0;
+}
+
+/* left box */
+.log-left-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+.log-left-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 340px;
+  margin: 0 0 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.log-left-img {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+/* right box */
+.log-right {
+  display: flex;
+  justify-content: center;
+}
+.log-card {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  color: #111;
+  border-radius: 28px;
+  padding: 44px 44px 36px;
+}
+.log-eyebrow {
+  display: block;
+  font-size: 13px;
+  color: #1a3cff;
+  margin-bottom: 6px;
+}
+.log-heading {
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 0 0 32px;
+  color: #12122a;
+}
+
+/* form fields */
+.log-field {
+  display: block;
+  margin-bottom: 20px;
+}
+.log-field span {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 8px;
+}
+.log-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #e6e6ea;
+  border-radius: 12px;
+  background: #f6f8fc;
+  font-size: 14px;
+  color: #111;
+  outline: none;
+}
+.log-field input::placeholder {
+  color: #9a9aa5;
+}
+.log-field input:focus {
+  border-color: #1a3cff;
+  background: #fff;
+}
+
+/* button */
+.log-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.log-button {
+  border: none;
+  cursor: pointer;
+  background: #c6ff00;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 999px;
+}
+
+/* "or" divider: line - text - line */
+.log-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 34px 0 26px;
+  font-size: 12px;
+  color: #777;
+}
+.log-divider::before,
+.log-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #dcdce2;
+}
+
+/* social buttons */
+.log-social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.log-social-btn {
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid #e6e6ea;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.log-social-btn:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+.log-social-btn img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* bottom text */
+.log-new {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  margin: 40px 0 0;
+}
+.log-new a {
+  color: #1a3cff;
+  text-decoration: none;
+}
+
+/* tablet + mobile: stack the boxes, form first */
+@media (max-width: 900px) {
+  .log {
+    padding: 28px 5% 50px;
+  }
+  .log-body {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .log-right {
+    order: 1;
+    width: 100%;
+  }
+  .log-left {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+  .log-left-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .log-left-img {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .log-card {
+    padding: 32px 22px 28px;
+    border-radius: 22px;
+  }
+  .log-heading {
+    font-size: 30px;
+  }
+  .log-social-btn {
+    width: 68px;
+    height: 68px;
+  }
+  .log-social-btn img {
+    width: 34px;
+    height: 34px;
+  }
+}

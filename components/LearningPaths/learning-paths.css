@@ -1,0 +1,44 @@
+.paths {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  text-align: center;
+  background: #fff;
+  color: #0b0b1a;
+}
+.paths-title { font-size: 34px; line-height: 1.25; font-weight: 700; margin: 0 0 18px; }
+.paths-subtitle {
+  max-width: 700px; margin: 0 auto 44px;
+  font-size: 15px; line-height: 1.7; color: #8a8a94;
+}
+
+.paths-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px;
+}
+
+.path-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 30px 12px;
+  border: 1px solid #e6e6ea; border-radius: 20px; background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.path-card:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); transform: translateY(-3px); }
+
+.path-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #c6ff00;
+  display: grid; place-items: center;
+}
+.path-icon img { width: 26px; height: 26px; object-fit: contain; display: block; }
+
+.path-name { font-size: 16px; font-weight: 500; color: #111; white-space: nowrap; }
+
+@media (max-width: 1000px) {
+  .paths-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .paths-grid { grid-template-columns: repeat(2, 1fr); }
+  .paths-title { font-size: 26px; }
+}

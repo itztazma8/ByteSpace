@@ -1,0 +1,218 @@
+/* .hc is as wide as the ellipse and centered on the person.
+   All sizes and positions are in cqw (1cqw = 1% of the ellipse width),
+   so the cards scale together with the hero.
+
+   --dy moves ALL three cards up/down together. Use it for fine tuning:
+   negative = up, positive = down. */
+.hc {
+  --dy: 0cqw;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--w, 1100px);
+  height: 100%;
+  container-type: inline-size;
+  font-family: inherit;
+  color: #111;
+  text-align: left;
+  pointer-events: none;
+}
+.hc * {
+  box-sizing: border-box;
+}
+
+.hc-card {
+  position: absolute;
+  width: var(--card-w);
+  background: #fff;
+  border-radius: 2.4cqw;
+  box-shadow: 0 1.5cqw 4cqw rgba(0, 0, 0, 0.08);
+}
+.hc .hc-card h4 {
+  margin: 0;
+  font-size: 2.1cqw;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ".hc .hc-card p" beats the hero's ".hero-content p" rule
+   (which forces font-size, margin-bottom, padding and max-width) */
+.hc .hc-card p {
+  margin: 0.5cqw 0 0;
+  padding: 0;
+  max-width: none;
+  font-size: 1.35cqw;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #888;
+  white-space: nowrap;
+}
+
+/* 1. UI/UX - left of the head */
+.hc-uiux {
+  --card-w: 22cqw;
+  left: calc(50% - 35cqw);
+  top: calc(var(--dy) + -20cqw);
+  padding: 1.8cqw 1.8cqw;
+}
+.hc .hc-uiux h4 {
+  font-size: 1.9cqw;
+}
+.hc .hc-uiux p {
+  font-size: 1.2cqw;
+}
+
+/* 2. Learning progress - right of the head
+   Left edge stays at 50% + 11cqw. Only the right side grows.
+   To widen more: raise --card-w by 0.5cqw at a time.
+   If it touches the squiggle: lower --card-w by 0.5cqw. */
+.hc-progress {
+  --card-w: 25cqw;
+  left: calc(50% + 11cqw);
+  top: calc(var(--dy) + -19cqw);
+  padding: 2cqw 2.6cqw 2.4cqw;
+  overflow: hidden;
+}
+.hc .hc-label {
+  display: block;
+  font-size: 1.7cqw;
+  color: #333;
+  white-space: nowrap;
+}
+.hc .hc-percent {
+  display: block;
+  font-size: 4.2cqw;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0.7cqw 0 0.9cqw;
+}
+
+/* extra ".hc" makes this win over ".group-image img" in the hero CSS */
+.hc .hc-bar {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 3. Happy students - lower left */
+.hc-happy {
+  --card-w: 27cqw;
+  left: calc(50% - 42cqw);
+  top: calc(var(--dy) + 1cqw);
+  padding: 2cqw 2.2cqw;
+}
+.hc .hc-count {
+  color: #999;
+}
+.hc .hc-star {
+  color: #c6ff00;
+}
+.hc .hc-avatars {
+  display: flex;
+  align-items: center;
+  margin-top: 1.3cqw;
+}
+
+/* avatar pictures */
+.hc .hc-avatar {
+  display: block;
+  width: 3.6cqw;
+  height: 3.6cqw;
+  max-width: none;
+  border-radius: 50%;
+  border: 0.25cqw solid #fff;
+  margin-left: -1cqw;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.hc .hc-avatar:first-child {
+  margin-left: 0;
+}
+
+/* lime "2K+" circle */
+.hc .hc-avatar-count {
+  display: grid;
+  place-items: center;
+  background: #c6ff00;
+  color: #000;
+  width: 4.6cqw;
+  height: 4.6cqw;
+  font-size: 1.3cqw;
+  font-weight: 700;
+}
+
+/* =========================
+   Mobile (600px and below)
+   Fixed pixel sizes so the text stays readable.
+   Every selector keeps the ".hc" prefix so the hero's
+   mobile "p { font-size: 14px }" rule can't override it.
+   ========================= */
+@media (max-width: 600px) {
+  .hc .hc-card {
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+
+  /* UI/UX - upper left */
+  .hc .hc-uiux {
+    --card-w: 156px;
+    left: calc(50% - 185px);
+    padding: 9px 12px;
+  }
+  .hc .hc-uiux h4 {
+    font-size: 13px;
+  }
+  .hc .hc-uiux p {
+    font-size: 8.5px;
+    margin-top: 3px;
+  }
+
+  /* Learning progress - upper right */
+  .hc .hc-progress {
+    --card-w: 135px;
+    left: calc(50% + 45px);
+    padding: 9px 11px 11px;
+  }
+  .hc .hc-label {
+    font-size: 10px;
+  }
+  .hc .hc-percent {
+    font-size: 24px;
+    margin: 3px 0 6px;
+  }
+
+  /* Happy students - lower left */
+  .hc .hc-happy {
+    --card-w: 150px;
+    left: calc(50% - 185px);
+    padding: 10px 12px;
+  }
+  .hc .hc-happy h4 {
+    font-size: 13px;
+  }
+  .hc .hc-happy p {
+    font-size: 9px;
+    margin-top: 3px;
+  }
+  .hc .hc-avatars {
+    margin-top: 7px;
+  }
+  .hc .hc-avatar {
+    width: 18px;
+    height: 18px;
+    border-width: 1.5px;
+    margin-left: -5px;
+  }
+  .hc .hc-avatar:first-child {
+    margin-left: 0;
+  }
+  .hc .hc-avatar-count {
+    width: 24px;
+    height: 24px;
+    font-size: 8px;
+    margin-left: -4px;
+  }
+}
